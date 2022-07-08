@@ -30,3 +30,32 @@ int set_to_mask(std::set<int> set, std::set<int> uni) {
     }
     return mask;
 }
+
+void build_boolean(std::set<int> U) { // построение булеана
+    int n = 1 << U.size();
+    std::cout << std::endl << "<<<<<<<<<<<<<<<";
+    for (int i = 0; i < n; i++) {
+        set_display(mask_to_set(i, U));
+    }
+    std::cout << ">>>>>>>>>>>>>>>" << std::endl;
+}
+
+std::set<int> fuse(std::set<int> A, std::set<int> B, std::set<int> U) { // объединение
+    return mask_to_set(set_to_mask(A, U) | set_to_mask(B, U), U);
+}
+
+std::set<int> intersect(std::set<int> A, std::set<int> B, std::set<int> U) { // пересечение
+    return mask_to_set(set_to_mask(A, U) & set_to_mask(B, U), U);
+}
+
+std::set<int> substract(std::set<int> A, std::set<int> B, std::set<int> U) { // вычитание
+    return mask_to_set(set_to_mask(A, U) ^ set_to_mask(intersect(A, B, U), U), U);
+}
+
+std::set<int> sim_substract(std::set<int> A, std::set<int> B, std::set<int> U) { // симметрическая разность
+    return fuse(substract(A, B, U), substract(B, A, U), U);
+}
+
+std::set<int> add(std::set<int> A, std::set<int> U) { // дополнение
+    return substract(U, A, U);
+}
