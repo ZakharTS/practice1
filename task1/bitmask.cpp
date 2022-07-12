@@ -33,11 +33,11 @@ int set_to_mask(std::set<int> set, std::set<int> uni) {
 
 void build_boolean(std::set<int> U) { // построение булеана
     int n = 1 << U.size();
-    std::cout << std::endl << "<<<<<<<<<<<<<<<";
+    std::cout << std::endl << "Boolean";
     for (int i = 0; i < n; i++) {
         set_display(mask_to_set(i, U));
     }
-    std::cout << ">>>>>>>>>>>>>>>" << std::endl;
+    std::cout << "End of boolean" << std::endl << std::endl;
 }
 
 std::set<int> fuse(std::set<int> A, std::set<int> B, std::set<int> U) { // объединение
