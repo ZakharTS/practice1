@@ -26,12 +26,11 @@ int set_to_mask(std::set<int> set, std::set<int> uni) {
     int mask = 0;
     for (auto itr = uni.rbegin(); itr != uni.rend(); itr++) {
         mask = mask << 1;
-        for (auto s: set) {
+        for (auto s: set)
             if (s == *itr) {
                 mask++;
                 break;
             }
-        }
     }
     return mask;
 }
@@ -80,7 +79,7 @@ int sim_substract(int maskA, int maskB) { // симметрическая раз
 }
 
 std::set<int> add(std::set<int> A, std::set<int> U) { // дополнение множества
-    int maskA = set_to_mask(A, U), maskU = set_to_mask(U, U);
+    int maskA = set_to_mask(A, U);
     return mask_to_set(add(maskA), U);
 }
 
